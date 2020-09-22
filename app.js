@@ -13,13 +13,16 @@ mongoose
     .then(() => {
         const app = express();
 
+        const fishRouter = require('./routes/fish');
+
         // middleware
         app.use(cors());
         app.use(bodyparser.json());
         app.use(bodyparser.urlencoded({ extended: false }));
+        app.use('/fish', fishRouter);
 
         app.listen(port, () => {
             console.log(`running on port ${port}`);
         });
-    })
+    });
 

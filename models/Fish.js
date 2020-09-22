@@ -1,16 +1,42 @@
 const mongoose = require('mongoose');
+const { Schema } = mongoose;
 
-const schema = mongoose.Schema({
-    _id: string,
-    type: string,
-    length: string,
-    date: Date,
-    time_of_day: string,
-    river: string,
-    area: string,
-    fly: string,
-    status: string,
-    updated: Date,
+const fishSchema = new Schema({
+    type: {
+        type: String,
+        required: true,
+    },
+    length: {
+        type: String,
+        required: true,
+    },
+    date: {
+        type: Date,
+        required: true,
+    },
+    time_of_day: {
+        type: String,
+        required: true,
+    },
+    river: {
+        type: String,
+        required: true,
+    },
+    area: {
+        type: String,
+
+    },
+    fly: {
+        type: String,
+
+    },
+    updated: {
+        type: Date
+    },
+}, {
+    timestamps: true,
 });
 
-module.exports = mongoose.model('Post', schema);
+const Fish = mongoose.model('Fish', fishSchema)
+
+module.exports = Fish;
