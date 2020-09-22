@@ -15,7 +15,7 @@ router.route('/add').post((req, res) => {
     console.log(newFish);
 
     newFish.save()
-        .then(() => res.json('Fish added!'))
+        .then(() => res.json(newFish))
         .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
@@ -31,7 +31,7 @@ router.route('/:id').delete((req, res) => {
         .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
-router.route('/update/:id').post((req, res) => {
+router.route('/:id').put((req, res) => {
     Fish.findById(req.params.id)
         .then((fish) => {
             fish.type = req.body.type || fish.type;
