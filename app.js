@@ -14,12 +14,14 @@ mongoose
         const app = express();
 
         const fishRouter = require('./routes/fish');
+        const trackerRouter = require('./routes/tracker');
 
         // middleware
         app.use(cors());
         app.use(bodyparser.json());
         app.use(bodyparser.urlencoded({ extended: false }));
         app.use('/fish', fishRouter);
+        app.use('/tracker', trackerRouter);
 
         app.listen(port, () => {
             console.log(`running on port ${port}`);

@@ -4,15 +4,13 @@ const Fish = require('../models/Fish');
 router.route('/').get((req, res) => {
     Fish.find()
         .then((_fish) => res.json(_fish))
-        .catch((err) => res.status(400).json('Error ' + err));
+        .catch((err) => res.status(400).json(`Error ${err}`))
 });
 
 router.route('/add').post((req, res) => {
     const fish = req.body;
 
     const newFish = new Fish(fish);
-
-    console.log(newFish);
 
     newFish.save()
         .then(() => res.json(newFish))
@@ -43,7 +41,7 @@ router.route('/:id').put((req, res) => {
             fish.fly = req.body.fly || fish.fly;
 
             fish.save()
-                .then(() => res.json('Fish updated!'))
+                .then(() => res.json(fish))
                 .catch((err) => res.status(400).json(`Error: ${err}`));
         })
         .catch((err) => res.status(400).json(`Error: ${err}`));
